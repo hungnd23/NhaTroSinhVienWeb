@@ -44,7 +44,8 @@ public class RoomDAO {
                         rs.getDouble(4),
                         rs.getInt(5),
                         rs.getString(6),
-                        rs.getString(7)
+                        rs.getString(7),
+                        rs.getString(8)
                 );
 
                 list.add(r);
@@ -57,11 +58,47 @@ public class RoomDAO {
         return list;
     }
     
-    public static void main(String[] args) {
-        RoomDAO dao = new RoomDAO();
-        List<Room> list = dao.getAllRooms();
-        for(Room r : list){
-            System.out.println(r);
+    public Room getRoomById(int id) {
+
+    String sql = "SELECT * FROM Rooms WHERE roomId = ?";
+
+    try {
+
+        DBContext db = new DBContext();
+        Connection conn = db.getConnection();
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            Room r = new Room(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getDouble(3),
+                    rs.getDouble(4),
+                    rs.getInt(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8)
+            );
+
+            return r;
         }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return null;
+}
+        public static void main(String[] args) {
+        RoomDAO dao = new RoomDAO();
+
+        Room r = dao.getRoomById(1);
+
+        System.out.println(r);
     }
 }

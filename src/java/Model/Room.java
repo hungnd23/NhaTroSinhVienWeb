@@ -18,11 +18,12 @@ public class Room {
     private int maxPeople;
     private String status;
     private String image;
+    private String description;
     
     public Room() {
     }
 
-    public Room(int roomId, String roomCode, double price, double area, int maxPeople, String status, String image) {
+    public Room(int roomId, String roomCode, double price, double area, int maxPeople, String status, String image, String description) {
         this.roomId = roomId;
         this.roomCode = roomCode;
         this.price = price;
@@ -30,8 +31,18 @@ public class Room {
         this.maxPeople = maxPeople;
         this.status = status;
         this.image = image;
+        this.description = description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
     public String getImage() {
         return image;
     }

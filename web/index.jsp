@@ -74,32 +74,17 @@ height="20"
 </div>
 </nav>
 
-<!-- Carousel -->
-<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
 
-<div class="carousel-inner">
-
-<div class="carousel-item active">
-<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg" class="d-block w-100"/>
-</div>
-
-<div class="carousel-item">
-<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg" class="d-block w-100"/>
-</div>
-
-<div class="carousel-item">
-<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg" class="d-block w-100"/>
-</div>
 
 </div>
 
 </div>
 
 <!-- Main -->
-<main class="mt-5">
+<main class="mt-5 pt-5">
 <div class="container">
 
-<h2 class="text-center mb-4">Available Rooms</h2>
+<h2 class="text-center mb-4">Danh sách phòng</h2>
 
 <div class="row">
 
@@ -118,7 +103,10 @@ height="20"
       <p>Price: ${room.price}</p>
 
       <p>Status: ${room.status}</p>
-
+      
+      <a href="room-detail?id=${room.roomId}" class="btn btn-primary">
+        Xem chi tiết
+      </a>
     </div>
 
   </div>
