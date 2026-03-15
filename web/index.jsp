@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="en">
 
@@ -102,7 +102,6 @@ height="20"
 <h2 class="text-center mb-4">Available Rooms</h2>
 
 <div class="row">
-<div class="row">
 
 <c:forEach var="room" items="${listRoom}">
 
@@ -110,12 +109,11 @@ height="20"
   <div class="card">
 
     <div class="bg-image hover-zoom ripple">
-      <img src="${pageContext.request.contextPath}/images/room.jpg"
-           class="w-100" />
+      <img src="${room.image}" class="w-100"/>
     </div>
 
     <div class="card-body">
-      <h5 class="card-title">${room.roomNumber}</h5>
+      <h5 class="card-title">${room.roomCode}</h5>
 
       <p>Price: ${room.price}</p>
 

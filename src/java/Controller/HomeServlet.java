@@ -24,7 +24,7 @@ public class HomeServlet extends HttpServlet {
 
             System.out.println("Total rooms: " + roomList.size());
 
-            request.setAttribute("listRoom", roomList);
+            request.setAttribute("listRoom",roomList);
 
             request.getRequestDispatcher("index.jsp").forward(request, response);
 

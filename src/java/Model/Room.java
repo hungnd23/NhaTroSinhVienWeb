@@ -17,17 +17,27 @@ public class Room {
     private double area;
     private int maxPeople;
     private String status;
-
+    private String image;
+    
     public Room() {
     }
 
-    public Room(int roomId, String roomCode, double price, double area, int maxPeople, String status) {
+    public Room(int roomId, String roomCode, double price, double area, int maxPeople, String status, String image) {
         this.roomId = roomId;
         this.roomCode = roomCode;
         this.price = price;
         this.area = area;
         this.maxPeople = maxPeople;
         this.status = status;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getRoomId() { return roomId; }

@@ -43,7 +43,8 @@ public class RoomDAO {
                         rs.getDouble(3),
                         rs.getDouble(4),
                         rs.getInt(5),
-                        rs.getString(6)
+                        rs.getString(6),
+                        rs.getString(7)
                 );
 
                 list.add(r);
