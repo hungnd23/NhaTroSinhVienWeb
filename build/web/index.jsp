@@ -58,17 +58,47 @@ height="20"
 </a>
 
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<li class="nav-item">
-<a class="nav-link" href="#">Home</a>
+
+<li class="nav-item mx-2">
+    <a class="nav-link" href="home">Home</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" href="#">Rooms</a>
+
+<li class="nav-item mx-2">
+    <a class="nav-link" href="home">Rooms</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" href="#">Contact</a>
+
+<li class="nav-item mx-2">
+    <a class="nav-link" href="#">Contact</a>
 </li>
+
+<!-- 🔥 FILTER -->
+<li class="nav-item mx-2">
+    <a class="nav-link text-success" href="home?status=available">Còn trống</a>
+</li>
+
+<li class="nav-item mx-2">
+    <a class="nav-link text-danger" href="home?status=occupied">Đã thuê</a>
+</li>
+
 </ul>
 
+    <ul class="navbar-nav ms-auto align-items-center">
+
+    <!-- LOGIN -->
+    <li class="nav-item me-3">
+        <a class="nav-link d-flex align-items-center" href="login.jsp">
+            <i class="fa fa-user me-1"></i> Login
+        </a>
+    </li>
+
+    <!-- REGISTER -->
+    <li class="nav-item">
+        <a class="btn btn-success btn-sm" href="register.jsp">
+            Register
+        </a>
+    </li>
+
+</ul>
 </div>
 
 </div>
@@ -102,7 +132,16 @@ height="20"
 
       <p>Price: ${room.price}</p>
 
-      <p>Status: ${room.status}</p>
+      <p>Status: 
+    <c:choose>
+        <c:when test="${room.status == 'Còn trống'}">
+            <span class="badge bg-success">Còn trống</span>
+        </c:when>
+        <c:otherwise>
+            <span class="badge bg-danger">Đã thuê</span>
+        </c:otherwise>
+    </c:choose>
+</p>
       
       <a href="room-detail?id=${room.roomId}" class="btn btn-primary">
         Xem chi tiết

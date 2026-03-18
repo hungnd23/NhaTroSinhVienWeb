@@ -19,12 +19,22 @@ public class HomeServlet extends HttpServlet {
 
         try {
 
+            // 🔥 Lấy status từ URL
+            String status = request.getParameter("status");
+
             RoomDAO dao = new RoomDAO();
-            List<Room> roomList = dao.getAllRooms();
+            List<Room> roomList;
+
+            // 🔥 Xử lý filter
+            if (status == null || status.equals("all")) {
+                roomList = dao.getAllRooms();
+            } else {
+                roomList = dao.getRoomsByStatus(status);
+            }
 
             System.out.println("Total rooms: " + roomList.size());
 
-            request.setAttribute("listRoom",roomList);
+            request.setAttribute("listRoom", roomList);
 
             request.getRequestDispatcher("index.jsp").forward(request, response);
 
