@@ -100,6 +100,27 @@ public class RoomDAO {
     return list;
 }
     
+    public boolean updateRoomStatus(int roomId, String status) {
+    String sql = "UPDATE Rooms SET status = ? WHERE roomId = ?";
+
+    try {
+        DBContext db = new DBContext();
+        Connection conn = db.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1, status);
+        ps.setInt(2, roomId);
+
+        int rows = ps.executeUpdate();
+        return rows > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+    
     public Room getRoomById(int id) {
 
     String sql = "SELECT * FROM Rooms WHERE roomId = ?";

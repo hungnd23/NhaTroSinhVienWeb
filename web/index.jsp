@@ -64,10 +64,6 @@ height="20"
 </li>
 
 <li class="nav-item mx-2">
-    <a class="nav-link" href="home">Rooms</a>
-</li>
-
-<li class="nav-item mx-2">
     <a class="nav-link" href="#">Contact</a>
 </li>
 
@@ -85,18 +81,36 @@ height="20"
     <ul class="navbar-nav ms-auto align-items-center">
 
     <!-- LOGIN -->
-    <li class="nav-item me-3">
-        <a class="nav-link d-flex align-items-center" href="login.jsp">
-            <i class="fa fa-user me-1"></i> Login
-        </a>
-    </li>
+    <ul class="navbar-nav ms-auto align-items-center">
+    <c:choose>
+        <%-- TRƯỜNG HỢP: Đã đăng nhập --%>
+        <c:when test="${not empty sessionScope.user}">
+            <li class="nav-item me-3">
+                <span class="nav-link d-flex align-items-center text-dark">
+                    <i class="fas fa-user-circle me-1"></i>
+                    Hi, <strong class="ms-1">${sessionScope.user.username}</strong>
+                </span>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger btn-sm ripple" href="logout">
+                    <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </a>
+            </li>
+        </c:when>
 
-    <!-- REGISTER -->
-    <li class="nav-item">
-        <a class="btn btn-success btn-sm" href="register.jsp">
-            Register
-        </a>
-    </li>
+        <%-- TRƯỜNG HỢP: Chưa đăng nhập --%>
+        <c:otherwise>
+            <li class="nav-item me-3">
+                <a class="nav-link d-flex align-items-center" href="login.jsp">
+                    <i class="fa fa-user me-1"></i> Login
+                </a>
+            </li>
+            
+        </c:otherwise>
+    </c:choose>
+</ul>
+
+    
 
 </ul>
 </div>

@@ -32,14 +32,22 @@ public class LoginServlet extends HttpServlet{
             session.setAttribute("user", user);
 
             // kiểm tra role
+            if(user != null){
+
+            // 🔥 LẤY URL TRƯỚC ĐÓ (nếu có)
+            String redirect = (String) session.getAttribute("redirectAfterLogin");
+
+            if (redirect != null) {
+                session.removeAttribute("redirectAfterLogin");
+                response.sendRedirect(redirect);
+                return;
+            }
+
+            // nếu không có redirect thì chạy bình thường
             if(user.getRoleId() == 1){
-
                 response.sendRedirect("adminDashboard.jsp");
-
             }else{
-
                 response.sendRedirect("home");
-
             }
 
         }else{
@@ -51,4 +59,5 @@ public class LoginServlet extends HttpServlet{
 
     }
 
+}
 }

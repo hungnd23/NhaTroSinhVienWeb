@@ -118,5 +118,57 @@ public class UserDAO extends DBContext {
 
     return null;
   }
+    
 
+
+    public void deleteUser(int id) {
+        String sql = "DELETE FROM Users WHERE userId = ?";
+        
+        try {
+            // 1. Lấy kết nối từ DBContext
+            Connection conn = getConnection(); 
+            
+            // 2. Chuẩn bị câu lệnh SQL
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            // 3. Truyền tham số id vào dấu ?
+            ps.setInt(1, id);
+            
+            // 4. Thực thi lệnh xóa
+            ps.executeUpdate();
+            
+            // 5. Đóng kết nối
+            ps.close();
+            conn.close();
+            
+        } catch (Exception e) {
+            // In lỗi ra console nếu có vấn đề (sai tên bảng, sai cột...)
+            e.printStackTrace();
+        }
+    }
+    public void createUser(String username, String password) {
+    // Sử dụng [password] và [status] để tránh trùng từ khóa trong SQL Server
+    String sql = "INSERT INTO Users (username, [password], roleId, [status]) VALUES (?, ?, ?, ?)";
+    try {
+        Connection conn = getConnection(); // Gọi hàm lấy connection từ DBContext
+        PreparedStatement ps = conn.prepareStatement(sql);
+        
+        ps.setString(1, username);
+        ps.setString(2, password);
+        ps.setInt(3, 2); // Mặc định là User thường
+        ps.setInt(4, 1); // Mặc định là Active
+        
+        ps.executeUpdate();
+        
+        // Đóng resource
+        ps.close();
+        conn.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    }
+    
+    
+
+    
 }
